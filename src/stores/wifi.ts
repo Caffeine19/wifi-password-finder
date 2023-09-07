@@ -74,7 +74,7 @@ export const useWifiStore = defineStore('wifi', () => {
       const res = await Promise.all(taskList)
       console.log('🚀 ~ file: wifi.ts:24 ~ getWifiDetailList ~ res:', res)
 
-      const parsedRes = res.map((r) => parseWifiDetail(r))
+      const parsedRes = res.map((r) => (r ? parseWifiDetail(r) : {}))
       console.log('🚀 ~ file: wifi.ts:74 ~ getWifiDetailList ~ parsedRes:', parsedRes)
 
       const newVal = wifiNameList.value.map((name, index) => {
