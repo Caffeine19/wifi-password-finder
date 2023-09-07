@@ -1,0 +1,9 @@
+appId: "wifi-password-finder"
+mac:
+  category: ""
+files:
+  - "./dist/**/*"
+  - "electron/dist/*"
+asar: false
+directories:
+  output: "dist-electron"
