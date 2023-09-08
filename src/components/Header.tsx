@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent } from 'vue'
 
 import { storeToRefs } from 'pinia'
 
@@ -19,9 +19,9 @@ const NameSearchInput = defineComponent({
           type="text"
           placeholder="Search By Name"
           style="-webkit-app-region:no-drag"
-          class="peer w-full rounded-full border border-slate-400 bg-white px-3 py-1 pr-10 text-lg font-normal text-slate-600 placeholder-slate-400 outline-none transition-colors hover:border-ice-cream-700 hover:bg-ice-cream-700/5 focus:border-ice-cream-700 focus:bg-ice-cream-700/5 dark:border-neutral-400 dark:bg-neutral-800 dark:text-neutral-200 dark:placeholder-neutral-400 dark:hover:border-ice-cream-200  dark:hover:bg-ice-cream-200/10 dark:focus:border-ice-cream-200 dark:focus:bg-ice-cream-200/10"
+          class="peer  w-full rounded-full border   border-transparent bg-white px-3 py-1 pr-10 text-lg font-normal text-slate-600 placeholder-slate-400  outline-none transition-colors focus:border-ice-cream-700 focus:bg-ice-cream-700/5 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder-neutral-400  dark:hover:bg-neutral-700/80 dark:focus:border-ice-cream-200 dark:focus:bg-ice-cream-200/10"
         />
-        <i class="ph ph-magnifying-glass absolute right-2 top-1/2 -translate-y-1/2 text-2xl text-slate-400 transition-colors peer-hover:text-ice-cream-700 peer-focus:text-ice-cream-700 dark:text-neutral-400 peer-hover:dark:text-ice-cream-200 peer-focus:dark:text-ice-cream-200"></i>
+        <i class="ph ph-magnifying-glass absolute right-2 top-1/2 -translate-y-1/2 text-2xl text-slate-400 transition-colors  peer-focus:text-ice-cream-700 dark:text-neutral-400  peer-focus:dark:text-ice-cream-200"></i>
       </div>
     )
   }
