@@ -15,7 +15,7 @@ export default defineComponent({
     })
 
     return () => (
-      <div class="w-screen h-screen bg-slate-50 overflow-auto custom-scrollbar">
+      <div class="custom-scrollbar h-screen w-screen overflow-auto bg-slate-50 dark:bg-neutral-900">
         <Header></Header>
         <Main></Main>
         <Footer></Footer>

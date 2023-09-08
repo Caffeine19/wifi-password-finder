@@ -19,13 +19,15 @@ const WindowControllerButton = defineComponent({
     return () => (
       <button
         id={props.id}
-        class="rounded-md p-1 flex items-center justify-center hover:bg-ice-cream-700/5 group"
+        class="group flex items-center justify-center rounded-md p-1 hover:bg-ice-cream-700/5 dark:hover:bg-ice-cream-200/5"
         style="-webkit-app-region:no-drag"
         onClick={() => props.action()}
       >
         <i
           class={
-            'ph text-2xl text-slate-400 group-hover:text-ice-cream-700' + ' ' + props.iconClass
+            'ph text-2xl text-slate-400 group-hover:text-ice-cream-700 dark:text-neutral-400 group-hover:dark:text-ice-cream-200 ' +
+            ' ' +
+            props.iconClass
           }
         ></i>
       </button>
@@ -61,7 +63,7 @@ const TitleBar = defineComponent({
   setup() {
     return () => (
       <div
-        class="bg-slate-50 flex items-center justify-end p-2 space-x-1"
+        class="flex items-center justify-end space-x-1 bg-slate-50 p-2 dark:bg-neutral-900"
         style="-webkit-app-region:drag"
       >
         {windowControllerButtonOption.map((bt) => (

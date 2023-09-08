@@ -28,9 +28,9 @@ const CopyButton = defineComponent({
     return () => (
       <button
         onClick={() => writeToClipboard(props.text || '')}
-        class="group hover:border-ice-cream-700 border border-slate-400 rounded-md p-1 flex items-center justify-center hover:bg-ice-cream-700/5 transition-colors"
+        class="group flex items-center justify-center rounded-md border border-slate-400 p-1 transition-colors hover:border-ice-cream-700 hover:bg-ice-cream-700/5"
       >
-        <i class="ph ph-copy text-slate-400 text-2xl group-hover:text-ice-cream-700 transition-colors"></i>
+        <i class="ph ph-copy text-2xl text-slate-400 transition-colors group-hover:text-ice-cream-700"></i>
       </button>
     )
   }
@@ -49,11 +49,11 @@ const WifiCard = defineComponent({
   setup(props) {
     const { name, password } = toRefs(props)
     return () => (
-      <div class=" bg-white p-3 px-4 shadow-md shadow-slate-600/5 rounded-md flex justify-between items-center transition-all hover:shadow-xl hover:scale-105 hover:shadow-slate-600/5">
+      <div class=" flex items-center justify-between rounded-md bg-white p-3 px-4 shadow-md shadow-slate-600/5 transition-all hover:scale-105 hover:shadow-xl hover:shadow-slate-600/5">
         <div class="space-y-0.5">
           <div class="flex items-center space-x-3">
             <i class="ph ph-wifi-high text-xl text-slate-400"></i>
-            <p class="text-slate-600 font-medium text-lg">{name.value}</p>
+            <p class="text-lg font-medium text-slate-600">{name.value}</p>
           </div>
           <div class="flex items-center space-x-3">
             {password.value ? (
@@ -64,9 +64,9 @@ const WifiCard = defineComponent({
 
             <p
               class={
-                'font-medium text-lg' +
+                'text-lg font-medium' +
                 ' ' +
-                (password.value ? 'text-slate-600' : 'text-chocolate-300 italic')
+                (password.value ? 'text-slate-600' : 'italic text-chocolate-300')
               }
             >
               {password.value || "Didn't find it"}
@@ -85,7 +85,7 @@ const WifiCardList = defineComponent({
     const { filteredWifiDetailList } = storeToRefs(wifiStore)
 
     return () => (
-      <div class="mx-auto container grid grid-cols-1 gap-y-4 p-8 py-24 pt-32 md:grid-cols-2 md:gap-x-4 lg:grid-cols-3">
+      <div class="container mx-auto grid grid-cols-1 gap-y-4 p-8 py-24 pt-32 md:grid-cols-2 md:gap-x-4 lg:grid-cols-3">
         {filteredWifiDetailList.value.map((wifi) => (
           <WifiCard
             name={wifi.name}

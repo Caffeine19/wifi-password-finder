@@ -21,7 +21,7 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-slate-200/80  transition-colors rounded;
+    @apply rounded  bg-slate-200/80 transition-colors;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {

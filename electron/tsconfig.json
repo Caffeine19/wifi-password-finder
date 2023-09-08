@@ -1,10 +1,8 @@
 {
-    "include": [
-        "./*.ts"
-    ],
-    "compilerOptions": {
-        "module": "CommonJS",
-        "outDir": "dist",
-        "moduleResolution": "node"
-    },
+  "include": ["./*.ts"],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "dist",
+    "moduleResolution": "node"
+  }
 }
