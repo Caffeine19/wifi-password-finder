@@ -21,14 +21,14 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply rounded  bg-slate-200/80 transition-colors;
+    @apply rounded  bg-slate-200/80 transition-colors dark:bg-neutral-600/80;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-300/60;
+    @apply bg-slate-300/60 dark:bg-neutral-500/60;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-slate-100;
+    @apply bg-slate-100 dark:bg-neutral-800;
   }
 }

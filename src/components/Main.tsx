@@ -28,9 +28,9 @@ const CopyButton = defineComponent({
     return () => (
       <button
         onClick={() => writeToClipboard(props.text || '')}
-        class="group flex items-center justify-center rounded-md border border-slate-400 p-1 transition-colors hover:border-ice-cream-700 hover:bg-ice-cream-700/5"
+        class="group flex items-center justify-center rounded-md border border-slate-400 p-1 transition-colors hover:border-ice-cream-700 hover:bg-ice-cream-700/5 dark:border-neutral-400 dark:hover:border-ice-cream-200 dark:hover:bg-ice-cream-200/10"
       >
-        <i class="ph ph-copy text-2xl text-slate-400 transition-colors group-hover:text-ice-cream-700"></i>
+        <i class=" ph ph-copy text-2xl text-slate-400 transition-colors group-hover:text-ice-cream-700 dark:text-neutral-400 dark:group-hover:text-ice-cream-200"></i>
       </button>
     )
   }
@@ -49,24 +49,26 @@ const WifiCard = defineComponent({
   setup(props) {
     const { name, password } = toRefs(props)
     return () => (
-      <div class=" flex items-center justify-between rounded-md bg-white p-3 px-4 shadow-md shadow-slate-600/5 transition-all hover:scale-105 hover:shadow-xl hover:shadow-slate-600/5">
+      <div class=" flex items-center justify-between rounded-md bg-white p-3 px-4 shadow-md shadow-slate-600/5 transition-all hover:scale-105 hover:shadow-xl hover:shadow-slate-600/5 dark:bg-neutral-800 dark:shadow-neutral-950/40 dark:hover:shadow-neutral-950/40">
         <div class="space-y-0.5">
           <div class="flex items-center space-x-3">
-            <i class="ph ph-wifi-high text-xl text-slate-400"></i>
-            <p class="text-lg font-medium text-slate-600">{name.value}</p>
+            <i class="ph ph-wifi-high text-xl text-slate-400 dark:text-neutral-400"></i>
+            <p class="text-lg font-medium text-slate-600 dark:text-neutral-200">{name.value}</p>
           </div>
           <div class="flex items-center space-x-3">
             {password.value ? (
-              <i class="ph ph-lock-key-open text-xl text-slate-400"></i>
+              <i class="ph ph-lock-key-open text-xl text-slate-400 dark:text-neutral-400"></i>
             ) : (
-              <i class="ph ph-warning text-xl text-chocolate-300"></i>
+              <i class="ph ph-warning text-xl text-chocolate-300 dark:text-chocolate-500"></i>
             )}
 
             <p
               class={
                 'text-lg font-medium' +
                 ' ' +
-                (password.value ? 'text-slate-600' : 'italic text-chocolate-300')
+                (password.value
+                  ? 'text-slate-600 dark:text-neutral-200'
+                  : 'italic text-chocolate-300 dark:text-chocolate-500')
               }
             >
               {password.value || "Didn't find it"}
