@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 export interface WifiDetailValue {
   profile?: {
@@ -28,6 +28,10 @@ export const useWifiStore = defineStore('wifi', () => {
         .filter((line) => line.startsWith('All User Profile')) // 仅保留以 "All User Profile" 开头的行
         .map((line) => line.split(':')[1].trim()) // 提取冒号后面的部分，并去除首尾空格
 
+      //按照a-z排序
+      newVal.sort((a, b) => {
+        return a.localeCompare(b, 'zh-Hans-CN', { sensitivity: 'accent' })
+      })
       wifiNameList.value = newVal
     } catch (error) {
       console.error(error)
@@ -101,12 +105,34 @@ export const useWifiStore = defineStore('wifi', () => {
     }
   })
 
+  const sort = ref<'a-to-z' | 'z-to-a'>('a-to-z')
+  const toggleSort = () => {
+    sort.value = sort.value === 'a-to-z' ? 'z-to-a' : 'a-to-z'
+  }
+  watch(
+    sort,
+    (newVal) => {
+      if (newVal === 'a-to-z') {
+        wifiDetailList.value.sort((a, b) => {
+          return a.name.localeCompare(b.name, 'zh-Hans-CN', { sensitivity: 'accent' })
+        })
+      } else {
+        wifiDetailList.value.sort((a, b) => {
+          return -a.name.localeCompare(b.name, 'zh-Hans-CN', { sensitivity: 'accent' })
+        })
+      }
+    },
+    { immediate: true }
+  )
+
   return {
     wifiNameList,
     getWifiNameList,
     wifiDetailList,
     getWifiDetailList,
     nameSearchKeyWord,
-    filteredWifiDetailList
+    filteredWifiDetailList,
+    sort,
+    toggleSort
   }
 })

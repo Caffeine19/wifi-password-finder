@@ -2,6 +2,8 @@ import { computed, defineComponent, inject } from 'vue'
 
 import { themeKey, toggleThemeKey } from '@/symbols/theme'
 import { THEME } from '@/types/theme'
+import { useWifiStore } from '@/stores/wifi'
+import { storeToRefs } from 'pinia'
 
 const ActionButton = defineComponent({
   props: {
@@ -41,13 +43,16 @@ const Footer = defineComponent({
         console.log('inject toggle theme failed')
       })
 
+    const wifiStore = useWifiStore()
+    const { sort } = storeToRefs(wifiStore)
+
     const actionButtonOption = computed(() => [
       {
-        iconClass: 'ph-sort-ascending',
-        action: () => console.log('sort')
+        iconClass: sort.value === 'a-to-z' ? 'ph-sort-ascending' : 'ph-sort-descending',
+        action: wifiStore.toggleSort
       },
       { iconClass: theme?.value === THEME.DARK ? 'ph-moon' : 'ph-sun', action: toggleTheme },
-      { iconClass: 'ph-confetti', action: () => console.log('sort') }
+      { iconClass: 'ph-confetti', action: () => console.log('tada') }
     ])
 
     return () => (
