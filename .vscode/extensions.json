@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "austenc.tailwind-docs"
+    "austenc.tailwind-docs",
+    "stxr.iconfont-preview"
   ]
 }

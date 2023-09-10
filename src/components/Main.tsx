@@ -89,10 +89,7 @@ const WifiCardList = defineComponent({
     return () => (
       <div class="container mx-auto grid grid-cols-1 gap-y-4 p-8 py-24 pt-32 md:grid-cols-2 md:gap-x-4 lg:grid-cols-3">
         {filteredWifiDetailList.value.map((wifi) => (
-          <WifiCard
-            name={wifi.name}
-            password={wifi.value.security ? wifi.value.security['Key Content'] : undefined}
-          ></WifiCard>
+          <WifiCard name={wifi.name} password={wifi.password}></WifiCard>
         ))}
       </div>
     )

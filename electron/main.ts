@@ -2,7 +2,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import * as path from 'path'
 
-import { getWifiNameList, getWifiDetail } from './wifi'
+import { getWifiPasswordList } from './wifi'
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -34,24 +34,24 @@ app.whenReady().then(() => {
     }
   })
 
-  ipcMain.handle('getWifiNameList', () => getWifiNameList())
-  ipcMain.handle('getWifiDetail', (event, name) => getWifiDetail(name))
+  ipcMain.handle('getWifiPasswordList', () => getWifiPasswordList())
 
   ipcMain.on('minimize', () => {
     const win = BrowserWindow.getFocusedWindow()
-    win.minimize()
+    if (win) win.minimize()
   })
   ipcMain.on('fullscreen', () => {
     const win = BrowserWindow.getFocusedWindow()
-    if (win.isMaximized()) {
-      win.unmaximize()
-    } else {
-      win.maximize()
-    }
+    if (win)
+      if (win.isMaximized()) {
+        win.unmaximize()
+      } else {
+        win.maximize()
+      }
   })
   ipcMain.on('close', () => {
     const win = BrowserWindow.getFocusedWindow()
-    win.close()
+    if (win) win.close()
   })
 })
 

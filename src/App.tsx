@@ -16,8 +16,7 @@ export default defineComponent({
   setup() {
     const wifiStore = useWifiStore()
     onMounted(async () => {
-      await wifiStore.getWifiNameList()
-      await wifiStore.getWifiDetailList()
+      await wifiStore.getWifiPasswordList()
     })
 
     //主題深色模式淺色模式切換
