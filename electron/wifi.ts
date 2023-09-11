@@ -89,10 +89,9 @@ export const getWifiPasswordList: GetWifiPassword = async () => {
       const relatedDetail = parsedWifiDetailList[index]
       return {
         name,
-        password: relatedDetail.security ? relatedDetail.security['key Content'] : undefined
+        password: relatedDetail.security ? relatedDetail.security['Key Content'] : undefined
       }
     })
-
     return wifiPasswordList
   } catch (error) {
     console.log(error)
