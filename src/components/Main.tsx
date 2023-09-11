@@ -10,11 +10,9 @@ const writeToClipboard = (text: string) => {
   textarea.select()
   navigator.clipboard
     .writeText(text)
-    .then(function () {
-      alert('save to clipboard!') // success
-    })
-    .catch(function () {
-      alert('copy failed') // error
+    .then(function () {})
+    .catch(function (err) {
+      console.log(err)
     })
   document.body.removeChild(textarea)
 }
@@ -99,4 +97,24 @@ const WifiCardList = defineComponent({
   }
 })
 
-export default WifiCardList
+const Loading = defineComponent({
+  setup() {
+    return () => (
+      <div class="fixed  left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl bg-white p-4 shadow-2xl shadow-slate-600/5 dark:bg-neutral-800 dark:shadow-neutral-950/40">
+        <i class="ph ph-spinner-gap animate-spin text-7xl text-slate-400 dark:text-neutral-400"></i>
+      </div>
+    )
+  }
+})
+
+const Main = defineComponent({
+  setup() {
+    const wifiStore = useWifiStore()
+    const { filteredWifiDetailList } = storeToRefs(wifiStore)
+
+    return () =>
+      filteredWifiDetailList.value.length > 0 ? <WifiCardList></WifiCardList> : <Loading></Loading>
+  }
+})
+
+export default Main
