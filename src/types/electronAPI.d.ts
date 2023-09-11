@@ -1,6 +1,7 @@
+import type { GetWifiPassword } from './wifi'
+
 export interface IElectronAPI {
-  getWifiNameList: () => Promise<string>
-  getWifiDetail: (name: string) => Promise<string>
+  getWifiPasswordList: GetWifiPassword
   closeWindow: () => void
   fullscreenWindow: () => void
   minimizeWindow: () => void

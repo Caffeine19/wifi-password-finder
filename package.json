@@ -14,7 +14,7 @@
     "format": "prettier --write src/",
     "electron:compile": "npx tsc -b -w electron",
     "electron:win:start": "chcp 65001 && set NODE_ENV=development && set VITE_PORT=5179 && electron ./electron/dist/main.js",
-    "electron:mac:start": "export NODE_ENV=development && electron ./electron/dist/main.js",
+    "electron:mac:start": "export NODE_ENV=development && export VITE_PORT=5179 && electron ./electron/dist/electron/main.js",
     "app:dir": "electron-builder --dir ./electron-builder.yml",
     "app:dist": "electron-builder --config ./electron-builder.yml"
   },

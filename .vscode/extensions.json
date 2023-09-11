@@ -6,6 +6,7 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "austenc.tailwind-docs",
-    "antfu.iconify"
+    "antfu.iconify",
+    "stxr.iconfont-preview"
   ]
 }

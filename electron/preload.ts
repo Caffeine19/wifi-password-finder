@@ -11,8 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 })
 contextBridge.exposeInMainWorld('electronAPI', {
-  getWifiNameList: () => ipcRenderer.invoke('getWifiNameList'),
-  getWifiDetail: (name: string) => ipcRenderer.invoke('getWifiDetail', name),
+  getWifiPasswordList: () => ipcRenderer.invoke('getWifiPasswordList'),
   closeWindow: () => ipcRenderer.send('close'),
   fullscreenWindow: () => ipcRenderer.send('fullscreen'),
   minimizeWindow: () => ipcRenderer.send('minimize')
