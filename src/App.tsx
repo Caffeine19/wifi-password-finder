@@ -1,10 +1,8 @@
 import { onMounted, defineComponent, provide, watch, type Ref } from 'vue'
 
-import { useWifiStore } from '@/stores/wifi'
+import { RouterView } from 'vue-router'
 
-import Main from './components/Main'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import { useWifiStore } from '@/stores/wifi'
 
 import { useStorage } from './hooks/useStorage'
 
@@ -52,9 +50,7 @@ export default defineComponent({
 
     return () => (
       <div class="custom-scrollbar h-screen w-screen overflow-auto bg-slate-50 dark:bg-neutral-900">
-        <Header></Header>
-        <Main></Main>
-        <Footer></Footer>
+        <RouterView></RouterView>
       </div>
     )
   }
