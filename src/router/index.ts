@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import MainView from '@/views/MainVIew/MainView'
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',
@@ -18,7 +18,7 @@ const router = createRouter({
     {
       path: '/behindTheScenes',
       name: 'behind-the-scenes',
-      component: import('@/views/BehindTheScenesView/BehindTheScenesView')
+      component: () => import('@/views/BehindTheScenesView/BehindTheScenesView')
     }
   ]
 })

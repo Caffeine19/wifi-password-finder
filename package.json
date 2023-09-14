@@ -2,7 +2,7 @@
   "name": "wifi-password-finder",
   "version": "0.0.0",
   "private": true,
-  "main": "electron/dist/main.js",
+  "main": "electron/dist/electron/main.js",
   "scripts": {
     "dev": "set VITE_PORT=5179 && vite",
     "build": "run-p type-check build-only",
