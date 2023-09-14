@@ -104,7 +104,7 @@ const Loading = defineComponent({
   }
 })
 
-const Main = defineComponent({
+const WifiCardContent = defineComponent({
   setup() {
     const wifiStore = useWifiStore()
     const { filteredWifiDetailList } = storeToRefs(wifiStore)
@@ -114,4 +114,4 @@ const Main = defineComponent({
   }
 })
 
-export default Main
+export default WifiCardContent

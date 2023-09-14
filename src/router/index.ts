@@ -14,6 +14,11 @@ const router = createRouter({
       path: '/main',
       name: 'main',
       component: MainView
+    },
+    {
+      path: '/behindTheScenes',
+      name: 'behind-the-scenes',
+      component: import('@/views/BehindTheScenesView/BehindTheScenesView')
     }
   ]
 })

@@ -1,11 +1,19 @@
-import { defineComponent } from 'vue'
+import { computed, defineComponent, inject } from 'vue'
 
-import Main from '@/views/MainVIew/WifiCardContent'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import { useRouter } from 'vue-router'
 
 import { storeToRefs } from 'pinia'
+
+import WifiCardContent from '@/views/MainVIew/WifiCardContent'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { ActionButton, ThemeActionButton } from '@/components/ActionButton'
+
 import { useWifiStore } from '@/stores/wifi'
+
+import { themeKey, toggleThemeKey } from '@/symbols/theme'
+
+import { THEME } from '@/types/theme'
 
 const NameSearchInput = defineComponent({
   setup() {
@@ -30,13 +38,46 @@ const NameSearchInput = defineComponent({
 
 export default defineComponent({
   setup() {
+    const theme = inject(themeKey)
+    const toggleTheme =
+      inject(toggleThemeKey) ||
+      (() => {
+        console.log('inject toggle theme failed')
+      })
+
+    const wifiStore = useWifiStore()
+    const { sort } = storeToRefs(wifiStore)
+
+    const router = useRouter()
+
+    const actionButtonOption = computed(() => [
+      {
+        iconClass: sort.value === 'a-to-z' ? 'ph-sort-ascending' : 'ph-sort-descending',
+        action: wifiStore.toggleSort
+      },
+      {
+        iconClass: 'ph-confetti',
+        action: () =>
+          router.push({
+            name: 'behind-the-scenes'
+          })
+      }
+    ])
+
     return () => (
       <div>
         <Header>
           <NameSearchInput></NameSearchInput>
         </Header>
-        <Main></Main>
-        <Footer></Footer>
+        <WifiCardContent></WifiCardContent>
+        <Footer>
+          {...[
+            actionButtonOption.value.map((bt) => (
+              <ActionButton iconClass={bt.iconClass} action={bt.action}></ActionButton>
+            )),
+            <ThemeActionButton></ThemeActionButton>
+          ]}
+        </Footer>
       </div>
     )
   }
