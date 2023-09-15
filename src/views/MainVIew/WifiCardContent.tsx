@@ -1,21 +1,15 @@
-import { defineComponent, toRefs } from 'vue'
+import { defineComponent, onMounted, toRefs } from 'vue'
 
 import { useWifiStore } from '@/stores/wifi'
 import { storeToRefs } from 'pinia'
 
-const writeToClipboard = (text: string) => {
-  const textarea = document.createElement('textarea')
-  document.body.appendChild(textarea)
-  textarea.value = ''
-  textarea.select()
-  navigator.clipboard
-    .writeText(text)
-    .then(function () {})
-    .catch(function (err) {
-      console.log(err)
-    })
-  document.body.removeChild(textarea)
-}
+import {
+  useInjectToast,
+  succeededToastProps,
+  failedToastProps,
+  loadingToastProps
+} from '@/hooks/useToast'
+
 const CopyButton = defineComponent({
   props: {
     text: {
@@ -23,6 +17,24 @@ const CopyButton = defineComponent({
     }
   },
   setup(props) {
+    const { showToast } = useInjectToast()
+
+    const writeToClipboard = (text: string) => {
+      const textarea = document.createElement('textarea')
+      document.body.appendChild(textarea)
+      textarea.value = ''
+      textarea.select()
+      navigator.clipboard
+        .writeText(text)
+        .then(() =>
+          showToast ? showToast(succeededToastProps) : console.log('inject showToast failed')
+        )
+        .catch(() =>
+          showToast ? showToast(failedToastProps) : console.log('inject showToast failed')
+        )
+      document.body.removeChild(textarea)
+    }
+
     return () => (
       <button
         onClick={() => writeToClipboard(props.text || '')}
@@ -94,23 +106,20 @@ const WifiCardList = defineComponent({
   }
 })
 
-const Loading = defineComponent({
-  setup() {
-    return () => (
-      <div class="fixed  left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl bg-white p-4 shadow-2xl shadow-slate-600/5 dark:bg-neutral-800 dark:shadow-neutral-950/40">
-        <i class="ph ph-spinner-gap animate-spin text-7xl text-slate-400 dark:text-neutral-400"></i>
-      </div>
-    )
-  }
-})
-
 const WifiCardContent = defineComponent({
   setup() {
     const wifiStore = useWifiStore()
     const { filteredWifiDetailList } = storeToRefs(wifiStore)
 
+    const { showToast, hideToast } = useInjectToast()
+    onMounted(async () => {
+      if (showToast) showToast(loadingToastProps, false)
+      await wifiStore.getWifiPasswordList()
+      if (hideToast) hideToast()
+    })
+
     return () =>
-      filteredWifiDetailList.value.length > 0 ? <WifiCardList></WifiCardList> : <Loading></Loading>
+      filteredWifiDetailList.value.length > 0 ? <WifiCardList></WifiCardList> : <div></div>
   }
 })
 
