@@ -1,12 +1,10 @@
-import { computed, defineComponent, inject } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 import { storeToRefs } from 'pinia'
 
-import { THEME } from '@/types/theme'
-
-import { themeKey, toggleThemeKey } from '@/symbols/theme'
-
 import { useWifiStore } from '@/stores/wifi'
+
+import { THEME, useInjectTheme } from '@/hooks/useTheme'
 
 export interface ActionButtonOption {
   iconClass: string
@@ -44,17 +42,18 @@ export const ActionButton = defineComponent({
 
 export const ThemeActionButton = defineComponent({
   setup() {
-    const theme = inject(themeKey)
-    const toggleTheme =
-      inject(toggleThemeKey) ||
-      (() => {
-        console.log('inject toggle theme failed')
-      })
+    const { theme, toggleTheme } = useInjectTheme()
 
     const iconClass = computed(() => {
       return theme?.value === THEME.DARK ? 'ph-moon' : 'ph-sun'
     })
-    return () => <ActionButton iconClass={iconClass.value} action={toggleTheme}></ActionButton>
+
+    return () => (
+      <ActionButton
+        iconClass={iconClass.value}
+        action={toggleTheme || (() => console.log('inject toggleTheme failed'))}
+      ></ActionButton>
+    )
   }
 })
 

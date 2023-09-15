@@ -1,4 +1,4 @@
-import { computed, defineComponent, inject } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 import { useRouter } from 'vue-router'
 
@@ -10,10 +10,6 @@ import Footer from '@/components/Footer'
 import { ActionButton, ThemeActionButton } from '@/components/ActionButton'
 
 import { useWifiStore } from '@/stores/wifi'
-
-import { themeKey, toggleThemeKey } from '@/symbols/theme'
-
-import { THEME } from '@/types/theme'
 
 const NameSearchInput = defineComponent({
   setup() {
@@ -38,13 +34,6 @@ const NameSearchInput = defineComponent({
 
 export default defineComponent({
   setup() {
-    const theme = inject(themeKey)
-    const toggleTheme =
-      inject(toggleThemeKey) ||
-      (() => {
-        console.log('inject toggle theme failed')
-      })
-
     const wifiStore = useWifiStore()
     const { sort } = storeToRefs(wifiStore)
 
