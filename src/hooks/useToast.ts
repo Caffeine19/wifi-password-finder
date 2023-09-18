@@ -62,9 +62,9 @@ export const loadingToastProps: IToastProps = {
 }
 export const succeededToastProps: IToastProps = {
   iconClass: 'ph ph-check',
-  iconColor: 'text-green-600'
+  iconColor: 'text-ice-cream-800 dark:text-ice-cream-200'
 }
 export const failedToastProps: IToastProps = {
   iconClass: 'ph ph-bug',
-  iconColor: 'text-red-600'
+  iconColor: 'text-chocolate-500 dark:text-chocolate-300'
 }

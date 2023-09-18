@@ -69,7 +69,7 @@ const WifiCard = defineComponent({
             {password.value ? (
               <i class="ph ph-lock-key-open text-xl text-slate-400 dark:text-neutral-400"></i>
             ) : (
-              <i class="ph ph-warning text-xl text-chocolate-300 dark:text-chocolate-300"></i>
+              <i class="ph ph-warning text-xl text-chocolate-500 dark:text-chocolate-300"></i>
             )}
 
             <p
@@ -78,7 +78,7 @@ const WifiCard = defineComponent({
                 ' ' +
                 (password.value
                   ? 'text-slate-600 dark:text-neutral-200'
-                  : 'italic text-chocolate-300 dark:text-chocolate-300')
+                  : 'italic text-chocolate-500 dark:text-chocolate-300')
               }
             >
               {password.value || "Didn't find it"}
