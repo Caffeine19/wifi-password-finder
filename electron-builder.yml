@@ -1,9 +1,12 @@
 appId: "wifi-password-finder"
+win:
+  icon: "electron/assets/icon.png"
 mac:
   category: ""
 files:
   - "./dist/**/*"
   - "electron/dist/**/*"
+  - "electron/assets/icon.png"
 asar: false
 directories:
   output: "dist-electron"

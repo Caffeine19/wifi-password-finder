@@ -11,8 +11,8 @@ const RoadMap = defineComponent({
   setup() {
     return () => (
       <div class="flex items-center space-x-2 text-slate-400 dark:text-neutral-400">
-        <i class="ph ph-confetti text-xl font-medium"></i>
-        <p class="text-xl font-medium">Behind The Scenes</p>
+        <i class="ph ph-confetti text-xl font-normal"></i>
+        <p class="text-base font-normal">Behind The Scenes</p>
       </div>
     )
   }
